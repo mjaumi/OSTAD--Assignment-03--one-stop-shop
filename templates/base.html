@@ -10,8 +10,13 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- CDN link for Pagedone component library -->
+    <link href="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/css/pagedone.css " rel="stylesheet" />
+
     <!-- CDN link for Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    {% block head %} {% endblock %}
 
     <title>{% block title %} Home {% endblock %} || One Stop Shop</title>
 </head>
@@ -25,9 +30,9 @@
             </a>
 
             <div class="flex items-center gap-5">
-                <ul class="flex items-center gap-3">
+                <ul class="flex items-center gap-3 !text-blue-400">
                     <li>
-                        <a href="#" class="text-blue-400 font-medium hover:text-blue-300 duration-300">Home</a>
+                        <a href="#" class="font-medium hover:!text-blue-300 duration-300">Home</a>
                     </li>
 
                     <li>
@@ -78,19 +83,18 @@
                     <p>info@onestopshop.com</p>
                 </div>
 
-                <div class="text-3xl">
-                    <a href="https://www.facebook.com"
-                        class="inline-block text-blue-400 hover:text-blue-300 duration-300" target="_blank">
+                <div class="text-3xl !text-blue-400">
+                    <a href="https://www.facebook.com" class="inline-block hover:!text-blue-300 duration-300"
+                        target="_blank">
                         <i class="fa-brands fa-square-facebook"></i>
                     </a>
 
-                    <a href="https://www.instagram.com"
-                        class="inline-block text-blue-400 hover:text-blue-300 duration-300" target="_blank">
+                    <a href="https://www.instagram.com" class="inline-block hover:!text-blue-300 duration-300"
+                        target="_blank">
                         <i class="fa-brands fa-square-instagram"></i>
                     </a>
 
-                    <a href="https://www.x.com" class="inline-block text-blue-400 hover:text-blue-300 duration-300"
-                        target="_blank">
+                    <a href="https://www.x.com" class="inline-block hover:!text-blue-300 duration-300" target="_blank">
                         <i class="fa-brands fa-square-x-twitter"></i>
                     </a>
                 </div>
@@ -99,17 +103,19 @@
 
         <div class="border-t text-sm py-1">
             <div class="w-4/5 flex items-center justify-between mx-auto">
-                <div class="space-x-2">
-                    <a href="#" class="font-medium text-blue-400 hover:text-blue-300 duration-300">Terms &
+                <div class="space-x-2 !text-blue-400">
+                    <a href="#" class="font-medium hover:!text-blue-300 duration-300">Terms &
                         Conditions</a>
 
-                    <a href="#" class="font-medium text-blue-400 hover:text-blue-300">Privacy Policy</a>
+                    <a href="#" class="font-medium hover:!text-blue-300">Privacy Policy</a>
                 </div>
 
                 <p>One Stop Shop @2025</p>
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/js/pagedone.js"></script>
 </body>
 
 </html>
