@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- CDN link for Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- CDN link for Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
@@ -12,25 +17,98 @@
 </head>
 
 <body>
-    <header class="w-4/5 mx-auto border-b-2 border-gray-700 py-3 px-5">
-        <nav class="flex items-center justify-between">
+    <!-- Header -->
+    <header class="sticky top-0 border-b border-gray-300 py-3 px-5">
+        <nav class="w-4/5 mx-auto flex items-center justify-between">
             <a href="{% url 'home' %}" class="cursor-pointer hover:opacity-70 duration-300">
                 <h1 class="font-semibold text-emerald-500 text-3xl">One Stop Shop</h1>
             </a>
 
-            <a href="#" class="bg-sky-500 text-white px-8 py-2 cursor-pointer hover:opacity-70 duration-300 rounded-md">
-                Login
-            </a>
+            <div class="flex items-center gap-5">
+                <ul class="flex items-center gap-3">
+                    <li>
+                        <a href="#" class="text-blue-400 font-medium hover:text-blue-300 duration-300">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="text-blue-400 font-medium hover:text-blue-300 duration-300">Cart</a>
+                    </li>
+                </ul>
+
+                <a href="#"
+                    class="bg-sky-500 text-white px-8 py-2 cursor-pointer hover:opacity-70 duration-300 rounded-md">
+                    Login
+                </a>
+            </div>
         </nav>
     </header>
 
+    <!-- Main Content -->
     <main class="w-4/5 mx-auto min-h-[500px]">
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer class="w-4/5 mx-auto border-t border-gray-600 text-sm text-gray-500 text-center mt-10">
-        <p>One Stop Shop @2025</p>
+    <!-- Footer -->
+    <footer class="border-t bg-gray-900 text-white mt-10 ">
+        <div class="w-4/5 flex items-center justify-between mx-auto py-5">
+            <div class="space-y-2">
+                <h1 class="text-3xl font-semibold text-emerald-500">One Stop Shop</h1>
+                <p class="w-1/3 text-sm">This is a trademark authorized website of One Stop Shop. Any kind of copyright
+                    infringement will
+                    cause taking legal actions
+                    against the person or group of persons.</p>
+            </div>
+
+            <div class="space-y-2">
+                <h2 class="text-xl font-medium">Contact Us</h2>
+
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>19/D Shantinagar, Dhaka-1000</p>
+                </div>
+
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-phone"></i>
+                    <p>+8801721558698</p>
+                </div>
+
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>info@onestopshop.com</p>
+                </div>
+
+                <div class="text-3xl">
+                    <a href="https://www.facebook.com"
+                        class="inline-block text-blue-400 hover:text-blue-300 duration-300" target="_blank">
+                        <i class="fa-brands fa-square-facebook"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com"
+                        class="inline-block text-blue-400 hover:text-blue-300 duration-300" target="_blank">
+                        <i class="fa-brands fa-square-instagram"></i>
+                    </a>
+
+                    <a href="https://www.x.com" class="inline-block text-blue-400 hover:text-blue-300 duration-300"
+                        target="_blank">
+                        <i class="fa-brands fa-square-x-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t text-sm py-1">
+            <div class="w-4/5 flex items-center justify-between mx-auto">
+                <div class="space-x-2">
+                    <a href="#" class="font-medium text-blue-400 hover:text-blue-300 duration-300">Terms &
+                        Conditions</a>
+
+                    <a href="#" class="font-medium text-blue-400 hover:text-blue-300">Privacy Policy</a>
+                </div>
+
+                <p>One Stop Shop @2025</p>
+            </div>
+        </div>
     </footer>
 </body>
 
