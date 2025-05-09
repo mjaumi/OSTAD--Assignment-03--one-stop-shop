@@ -32,7 +32,7 @@
             <div class="flex items-center gap-5">
                 <ul class="flex items-center gap-3 !text-blue-400">
                     <li>
-                        <a href="#" class="font-medium hover:!text-blue-300 duration-300">Home</a>
+                        <a href="{% url 'home' %}" class="font-medium hover:!text-blue-300 duration-300">Home</a>
                     </li>
 
                     <li>
@@ -40,9 +40,10 @@
                     </li>
                 </ul>
 
-                <a href="#"
+                <a href="{% url 'login' %}"
                     class="bg-sky-500 text-white px-8 py-2 cursor-pointer hover:opacity-70 duration-300 rounded-md">
-                    Login
+                    <i class="fa-solid fa-user"></i>
+                    Login / Register
                 </a>
             </div>
         </nav>
