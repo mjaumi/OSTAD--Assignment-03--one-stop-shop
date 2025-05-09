@@ -5,11 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CDN link for Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <!-- CDN link for Pagedone component library -->
     <link href="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/css/pagedone.css " rel="stylesheet" />
 
@@ -18,12 +13,17 @@
 
     {% block head %} {% endblock %}
 
+    <!-- CDN link for Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <title>{% block title %} Home {% endblock %} || One Stop Shop</title>
 </head>
 
 <body>
     <!-- Header -->
-    <header class="sticky top-0 border-b border-gray-300 py-3 px-5">
+    <header class="sticky top-0 border-b border-gray-300 py-3 px-5 bg-white z-[9999]">
         <nav class="w-4/5 mx-auto flex items-center justify-between">
             <a href="{% url 'home' %}" class="cursor-pointer hover:opacity-70 duration-300">
                 <h1 class="font-semibold text-emerald-500 text-3xl">One Stop Shop</h1>
@@ -55,7 +55,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t bg-gray-900 text-white mt-10 ">
+    <footer class="border-t bg-gray-900 text-white mt-10">
         <div class="w-4/5 flex items-center justify-between mx-auto py-5">
             <div class="space-y-2">
                 <h1 class="text-3xl font-semibold text-emerald-500">One Stop Shop</h1>

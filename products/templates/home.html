@@ -61,6 +61,61 @@ Home
         <div class="swiper-pagination"></div>
     </div>
 </section>
+
+<section class="mt-10">
+    <h2 class="text-4xl font-bold text-gray-900">All Products</h2>
+
+    <div class="grid grid-cols-4 gap-5 mt-6">
+        <!-- product card -->
+        <div class="relative border border-gray-600 rounded-xl p-4 space-y-3">
+            <figure class="h-[250px] flex justify-center items-center">
+                <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s24-ultra-5g-sm-s928-0.jpg"
+                    class="h-full w-auto object-cover" alt="galaxy S24 Ultra" />
+
+            </figure>
+
+            <figcaption class="space-y-5">
+                <div>
+                    <h3 class="text-2xl font-semibold">Samsung Galaxy S24 Ultra</h3>
+
+                    <div class="flex items-center gap-2 my-2">
+                        <h4 class="font-bold text-2xl line-through text-rose-600">$1250</h4>
+                        <h4 class="font-black text-3xl">$1400</h4>
+                    </div>
+
+                    <p class="text-gray-500">Samsung's premium phone with S Pen, Snapdragon 8 Gen 3, and a 200MP
+                        camera.</p>
+                </div>
+
+                <div class="space-y-1">
+                    <button
+                        class="w-full !bg-sky-500 text-white px-8 py-2 cursor-pointer hover:opacity-70 duration-300 rounded-md">
+                        <i class="fa-solid fa-eye"></i>
+                        View Details
+                    </button>
+
+                    <div class="flex items-center gap-2">
+                        <button
+                            class="flex-1 !bg-gray-900 text-white px-8 py-2 cursor-pointer hover:opacity-70 duration-300 rounded-md">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            Add to Cart
+                        </button>
+
+                        <button title="Add to wishlist"
+                            class="flex items-center justify-center bg-transparent text-gray-900 p-2 size-10 border-2 !border-gray-900 hover:bg-gray-900 hover:text-white duration-300 rounded-md">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </figcaption>
+
+            <p
+                class="absolute top-1 right-4 w-fit font-medium bg-rose-600 text-white text-sm rounded-full px-4 py-px animate-pulse">
+                New Arrival
+            </p>
+        </div>
+    </div>
+</section>
 {% endblock %}
 
 {% block script %}
