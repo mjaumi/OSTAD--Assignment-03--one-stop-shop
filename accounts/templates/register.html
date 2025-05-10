@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Login
+Register
 {% endblock %}
 
 {% block content %}
@@ -9,11 +9,17 @@ Login
     <div class="w-2/5 mx-auto shawdow p-5 rounded-2xl border text-gray-900 space-y-5">
         <div>
             <h2 class="text-3xl font-light">Welcome to <span class="font-bold text-emerald-500">OneStopShop</span></h2>
-            <h3 class="text-lg font-medium">Please, login to your account.</h3>
+            <h3 class="text-lg font-medium">Please, fill up the form to create a new account.</h3>
         </div>
 
         <!-- Login Form -->
         <form action="" method="POST" class="text-gray-900 space-y-3">
+            <div>
+                <label for="username">Username<span class="text-lg font-bold text-red-500">*</span></label>
+                <input type="text" name="username" id="username" placeholder="Enter your username here"
+                    class="w-full border border-gray-300 rounded-md p-2">
+            </div>
+
             <div>
                 <label for="email">Email Address<span class="text-lg font-bold text-red-500">*</span></label>
                 <input type="email" name="email" id="email" placeholder="Enter your email address"
@@ -26,14 +32,21 @@ Login
                     class="w-full border border-gray-300 rounded-md p-2">
             </div>
 
+            <div>
+                <label for="confirm_password">Confirm Password<span
+                        class="text-lg font-bold text-red-500">*</span></label>
+                <input type="password" name="confirm_password" id="confirm_password"
+                    placeholder="Retype your password here" class="w-full border border-gray-300 rounded-md p-2">
+            </div>
+
             <button type="submit"
                 class="w-full bg-emerald-500 text-white py-2 rounded-md hover:opacity-70 duration-300">
-                <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                Log In
+                <i class="fa-solid fa-address-card"></i>
+                Register
             </button>
 
-            <p class="text-center text-sm">New to OneStopShop? <a href="{% url 'register' %}"
-                    class="!text-sky-500 italic underline font-medium hover:opacity-70 duration-300">Create a new
+            <p class="text-center text-sm">Already have an account? <a href="{% url 'login' %}"
+                    class="!text-sky-500 italic underline font-medium hover:opacity-70 duration-300">Login to your
                     account</a> here.</p>
         </form>
     </div>
