@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <title>Email template || OneStopShop</title>
+
+    <!-- CDN link for Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        body {
+            text-align: center;
+            margin: 0 auto;
+            width: 650px;
+            background-color: #e2e2e2;
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="py-5">
+    <div class="bg-white">
+        <div class="p-3 space-y-4">
+            <h1 class="text-3xl font-medium">Hi {{ user.first_name }}, Welcome To <span
+                    class="text-emerald-500 font-bold">OneStopShop</span>
+            </h1>
+
+            <p class="text-gray-400 text-sm font-medium">We are glad to have you on board. Please click the button below
+                to
+                verify your
+                email
+                address.</p>
+
+            <a href="{{ verification_url }}"
+                class="inline-block bg-sky-500 text-white px-4 py-2 text-lg font-medium rounded-lg hover:opacity-70 duration-300">Verify
+                Email</a>
+
+            <p class="text-sm text-gray-400 font-medium">If you have any question, please email us at <span
+                    class="text-emerald-500 font-semibold">info@OneStopShop.com</span> or visit
+                our <span class="text-emerald-500 font-semibold">FAQs.</span> You can also chat with a real live human
+                during our operating hours. they can answer questions about account or help you
+                with your meditation practice.</p>
+            </p>
+        </div>
+
+        <div class="bg-gray-900 text-white py-5 space-y-5">
+            <h2 class="text-xl font-medium">Shop from <span class="font-semibold text-emerald-500">OneStopShop</span>
+            </h2>
+
+            <div class="flex justify-center items-center gap-3">
+                <a href="#" class="text-sky-500 font-medium underline hover:opacity-70 duration-300">Contact Us</a>
+
+                <a href="#" class="text-sky-500 font-medium underline hover:opacity-70 duration-300">Privacy Policy</a>
+
+                <a href="#" class="text-sky-500 font-medium underline hover:opacity-70 duration-300">Unsubscribe</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
