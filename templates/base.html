@@ -40,31 +40,39 @@
                     </li>
                 </ul>
 
+                {% if not user.is_authenticated %}
                 <a href="{% url 'login' %}"
                     class="bg-sky-500 text-white px-8 py-2 cursor-pointer hover:opacity-70 duration-300 rounded-md">
                     <i class="fa-solid fa-user"></i>
                     Login / Register
                 </a>
+                {% else %}
+                <div class="flex items-center gap-3">
+                    <p class="text-gray-900 font-semibold">{{user.first_name}} {{user.last_name}}</p>
+
+                    {% if user.profile_picture %}
+                    <img src="{{user.profile_picture}}" alt="Avatar of {{user.first_name}} {{user.last_name}}"
+                        class="size-10 rounded-full">
+                    {% else %}
+                    <div class="flex items-center justify-center bg-gray-300 size-10 rounded-md">
+                        <i class="fa-solid fa-user text-2xl text-gray-400"></i>
+                    </div>
+                    {% endif %}
+
+                    <a title="Logout" href="{% url 'logout' %}"
+                        class="text-emerald-500 text-2xl cursor-pointer hover:!text-red-500 duration-300">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </a>
+                </div>
+                {% endif %}
             </div>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="relative w-4/5 mx-auto min-h-[500px]">
+    <main class="w-4/5 mx-auto min-h-[500px]">
         {% block content %}
         {% endblock %}
-
-        <!-- Messages -->
-        {% if messages %}
-        <div class="space-y-2">
-            {% for message in messages %}
-            <div
-                class="absolute top-[100px] right-10 {% if message.tags == 'error' %}bg-red-100 text-red-800 border border-red-300{% elif message.tags == 'success' %}bg-green-100 text-green-800 border border-green-300{% else %}bg-gray-100 text-gray-800 border border-gray-300{% endif %} p-3 rounded-md text-sm">
-                {{ message }}
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
     </main>
 
     <!-- Footer -->
@@ -127,6 +135,18 @@
             </div>
         </div>
     </footer>
+
+    <!-- Messages -->
+    {% if messages %}
+    <div class="space-y-2">
+        {% for message in messages %}
+        <div
+            class="absolute top-[100px] right-10 z-[999] {% if message.tags == 'error' %}bg-red-100 text-red-800 border border-red-300{% elif message.tags == 'success' %}bg-green-100 text-green-800 border border-green-300{% else %}bg-gray-100 text-gray-800 border border-gray-300{% endif %} py-3 px-6 rounded-md text-sm">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     <script src="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/js/pagedone.js"></script>
 

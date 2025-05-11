@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from .forms import CustomUserRegistrationForm
 from .utils import send_verification_email
 from django.contrib import messages
@@ -41,6 +43,27 @@ def verify_email(request, uid64, token):
         messages.error(request, 'Invalid or expired verification link!')
         return redirect('register')
 
+# user login view
+def user_login(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, email=email, password=password)
 
-def login(request):
+        if not user:
+            messages.error(request, 'Invalid email or password!')
+        elif not user.is_verified:
+            messages.error(request, 'Email not verified! Please check your email for verification.')
+        else:
+            login(request, user)
+            messages.success(request, 'Login successful!')
+            return redirect('home')
+
     return render(request, 'login.html')
+
+# user logout view
+@login_required
+def user_logout(request):
+    logout(request)
+    messages.success(request, 'Logout successful!')
+    return redirect('login')
