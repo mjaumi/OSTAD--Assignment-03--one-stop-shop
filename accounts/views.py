@@ -57,9 +57,16 @@ def user_login(request):
         else:
             login(request, user)
             messages.success(request, 'Login successful!')
-            return redirect('home')
+            return redirect('profile')
 
     return render(request, 'login.html')
+
+# user profile view
+@login_required
+def user_profile(request):
+    user = request.user
+    return render(request, 'profile.html', {'user': user})
+
 
 # user logout view
 @login_required
