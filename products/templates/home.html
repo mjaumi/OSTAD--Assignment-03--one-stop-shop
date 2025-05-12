@@ -63,38 +63,41 @@ Home
 </section>
 
 <section class="mt-10">
-    <h2 class="text-4xl font-bold text-gray-900">All Products</h2>
+    <h2 class="text-4xl font-bold text-gray-900">All Products ({{products|length}})</h2>
 
     <div class="grid grid-cols-4 gap-5 mt-6">
         <!-- product card -->
+        {% for product in products %}
         <div class="relative border border-gray-600 rounded-xl p-4 space-y-3">
             <figure class="h-[250px] flex justify-center items-center">
-                <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s24-ultra-5g-sm-s928-0.jpg"
-                    class="h-full w-auto object-cover" alt="galaxy S24 Ultra" />
+                <img src="{{product.image.url}}" class="h-full w-auto object-cover" alt="image of {{product.name}}" />
 
             </figure>
 
-            <figcaption class="space-y-5">
-                <div>
-                    <h3 class="text-2xl font-semibold">Samsung Galaxy S24 Ultra</h3>
+            <figcaption class="flex flex-col h-[260px] space-y-3">
+                <div class="flex-1">
+                    <h3 class="text-2xl font-semibold">{{product.name}}</h3>
 
                     <div class="my-2">
                         <div class="flex items-center gap-2">
-                            <h4 class="font-bold text-2xl line-through text-rose-600">$1250</h4>
-                            <h4 class="font-black text-3xl">$1400</h4>
+                            {% if product.discount_percentage %}
+                            <h4 class="font-bold text-2xl line-through text-rose-600">${{product.price}}</h4>
+                            {% endif %}
+                            <h4 class="font-black text-3xl">${{product.discount_price|floatformat:2}}</h4>
                         </div>
 
+                        {% if product.discount_percentage %}
                         <span class="bg-emerald-500 text-white font-medium rounded-full px-4 py-px text-xs">
-                            20% Off
+                            {{product.discount_percentage|floatformat:0}}% Off
                         </span>
+                        {% endif %}
                     </div>
 
 
-                    <p class="text-gray-500">Samsung's premium phone with S Pen, Snapdragon 8 Gen 3, and a 200MP
-                        camera.</p>
+                    <p class="text-gray-500">{{product.description}}</p>
                 </div>
 
-                <div class="space-y-1">
+                <div class="space-y-1 mt-auto">
                     <button
                         class="w-full !bg-sky-500 text-white px-8 py-2 cursor-pointer hover:opacity-70 duration-300 rounded-md">
                         <i class="fa-solid fa-eye"></i>
@@ -116,11 +119,14 @@ Home
                 </div>
             </figcaption>
 
+            {% if product.is_new %}
             <p
                 class="absolute top-1 right-4 w-fit font-medium bg-rose-600 text-white text-sm rounded-full px-4 py-px animate-pulse">
                 New Arrival
             </p>
+            {% endif %}
         </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}
