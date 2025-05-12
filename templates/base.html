@@ -59,9 +59,10 @@
                     <img src="{{user.profile_picture}}" alt="Avatar of {{user.first_name}} {{user.last_name}}"
                         class="size-10 rounded-full">
                     {% else %}
-                    <div class="flex items-center justify-center bg-gray-300 size-10 rounded-md">
+                    <a href="{% url 'dashboard' %}"
+                        class="flex items-center justify-center bg-gray-300 size-10 rounded-md hover:opacity-70 duration-300">
                         <i class="fa-solid fa-user text-2xl text-gray-400"></i>
-                    </div>
+                    </a>
                     {% endif %}
 
                     <a title="Logout" href="{% url 'logout' %}"
