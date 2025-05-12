@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserRegistrationForm
+from .forms import CustomUserRegistrationForm, UpdateUserDashboardForm
 from .utils import send_verification_email
 from django.contrib import messages
 from django.utils.http import urlsafe_base64_decode
@@ -66,6 +66,22 @@ def user_login(request):
 def user_dashboard(request):
     user = request.user
     return render(request, 'dashboard.html', {'user': user})
+
+# update user dashboard view
+@login_required
+def update_user_dashboard(request):
+    user = request.user
+
+    if request.method == 'POST':
+        form = UpdateUserDashboardForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully!')
+            return redirect('dashboard')
+    else:
+        form = UpdateUserDashboardForm(instance=user)
+
+    return render(request, 'update_dashboard.html', {'user': user})
 
 
 # user logout view

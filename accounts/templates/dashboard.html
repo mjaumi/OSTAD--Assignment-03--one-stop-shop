@@ -7,9 +7,27 @@ Dashboard
 {% block content %}
 <section class="min-h-[80vh] flex justify-center py-10">
     <div class="w-4/5 h-fit mx-auto border-2 rounded-2xl p-5">
+        <div class="flex items-center justify-end gap-3">
+            <a href="{% url 'update_dashboard' %}"
+                class="bg-sky-600 text-white rounded-md px-4 py-2 hover:opacity-70 duration-300">
+                <i class="fa-solid fa-pen-to-square"></i>
+                Update Dashboard
+            </a>
+
+            <a href="#" class="bg-emerald-600 text-white rounded-md px-4 py-2 hover:opacity-70 duration-300">
+                <i class="fa-solid fa-unlock"></i>
+                Change Password
+            </a>
+        </div>
+
         <div class="space-y-3">
             {% if user.profile_picture %}
-            <img src="{{user.profile_picture}}" alt="Avatar of {{user.first_name}} {{user.last_name}}" />
+            <div class="flex items-center justify-center">
+                <div class="size-20 rounded-lg overflow-hidden">
+                    <img src="{{user.profile_picture.url}}" class="w-full h-full object-cover"
+                        alt="Avatar of {{user.first_name}} {{user.last_name}}" />
+                </div>
+            </div>
             {% else %}
             <div class="flex items-center justify-center">
                 <div class="flex items-center justify-center bg-gray-300 size-20 rounded-md">
@@ -18,6 +36,48 @@ Dashboard
             </div>
             {% endif %}
             <h2 class="text-gray-900 text-3xl text-center font-bold">{{user.first_name}} {{user.last_name}}</h2>
+        </div>
+
+        <div class="grid grid-cols-3 gap-5 mt-5">
+            <div class="text-center">
+                <p class="text-gray-500 font-medium">Email</p>
+                <h3 class="text-gray-900 text-2xl font-semibold">{{user.email}}</h3>
+            </div>
+
+            <div class="text-center">
+                <p class="text-gray-500 font-medium">Phone Number</p>
+                <h3 class="text-gray-900 text-2xl font-semibold">
+                    {{ user.phone_number|default:"N/A" }}
+                </h3>
+            </div>
+
+            <div class="text-center">
+                <p class="text-gray-500 font-medium">Country</p>
+                <h3 class="text-gray-900 text-2xl font-semibold">
+                    {{ user.country|default:"N/A" }}
+                </h3>
+            </div>
+
+            <div class="text-center">
+                <p class="text-gray-500 font-medium">City</p>
+                <h3 class="text-gray-900 text-2xl font-semibold">
+                    {{ user.city|default:"N/A" }}
+                </h3>
+            </div>
+
+            <div class="text-center">
+                <p class="text-gray-500 font-medium">Postal Code</p>
+                <h3 class="text-gray-900 text-2xl font-semibold">
+                    {{ user.postal_code|default:"N/A" }}
+                </h3>
+            </div>
+
+            <div class="text-center">
+                <p class="text-gray-500 font-medium">Address</p>
+                <h3 class="text-gray-900 text-2xl font-semibold">
+                    {{ user.address|default:"N/A" }}
+                </h3>
+            </div>
         </div>
     </div>
 </section>
