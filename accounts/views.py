@@ -6,6 +6,7 @@ from .utils import send_verification_email
 from django.contrib import messages
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.forms import PasswordChangeForm
 
 from .models import CustomUser
 
@@ -83,6 +84,19 @@ def update_user_dashboard(request):
 
     return render(request, 'update_dashboard.html', {'user': user})
 
+# change password view
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Password changed successfully!')
+            return redirect('dashboard')
+        else:
+            return render(request, 'change_password.html', {'form': form})
+        
+    return render(request, 'change_password.html')
 
 # user logout view
 @login_required
