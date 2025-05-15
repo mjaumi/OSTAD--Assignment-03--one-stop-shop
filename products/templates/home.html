@@ -18,48 +18,87 @@ Home
 <section class="w-full relative pt-8">
     <div class="swiper feature-product-carousel swiper-container">
         <div class="swiper-wrapper">
+            {% for featured_product in featured_products %}
             <div class="swiper-slide">
-                <div class="bg-indigo-50 rounded-2xl h-[500px] flex justify-center items-center">
-                    <span class="text-3xl font-semibold text-indigo-600">Slide 1 </span>
-                </div>
-            </div>
+                <div class="grid grid-cols-2 border-2 border-gray-300 rounded-2xl h-[500px]">
+                    <div class="h-[450px] flex items-center justify-center my-auto">
+                        <img src="{{featured_product.image.url}}" alt="{{featured_product.name}}"
+                            class="h-full w-auto" />
+                    </div>
 
-            <div class="swiper-slide">
-                <div class="bg-green-50 rounded-2xl h-[500px] flex justify-center items-center">
-                    <span class="text-3xl font-semibold text-indigo-600">Slide 2 </span>
-                </div>
-            </div>
+                    <div class="h-[450px] flex flex-col justify-center space-y-4">
+                        <div>
+                            <h2 class="text-4xl text-emerald-600 font-black animate-pulse mb-2">Featured</h2>
+                            <h2 class="text-3xl font-bold text-gray-900">{{featured_product.name}}</h2>
+                        </div>
 
-            <div class="swiper-slide">
-                <div class="bg-indigo-50 rounded-2xl h-[500px] flex justify-center items-center">
-                    <span class="text-3xl font-semibold text-indigo-600">Slide 3 </span>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                {% if featured_product.discount_percentage %}
+                                <h4 class="font-bold text-3xl line-through text-rose-600">${{featured_product.price}}
+                                </h4>
+                                {% endif %}
+                                <h4 class="font-black text-4xl">${{featured_product.discount_price|floatformat:2}}</h4>
+                            </div>
+
+                            {% if featured_product.discount_percentage %}
+                            <span class="bg-emerald-500 text-white font-medium rounded-full px-4 py-px text-sm">
+                                {{featured_product.discount_percentage|floatformat:0}}% Off
+                            </span>
+                            {% endif %}
+
+                            <div class="space-y-2 mt-5">
+                                <p class="font-medium text-gray-900">
+                                    <i class="fa-solid fa-square-minus"></i>
+                                    {{featured_product.processor}}
+                                </p>
+
+                                <p class="font-medium text-gray-900">
+                                    <i class="fa-solid fa-square-minus"></i>
+                                    {{featured_product.display}}
+                                </p>
+
+                                <p class="font-medium text-gray-900">
+                                    <i class="fa-solid fa-square-minus"></i>
+                                    {{featured_product.memory}}
+                                </p>
+
+                                <p class="font-medium text-gray-900">
+                                    <i class="fa-solid fa-square-minus"></i>
+                                    {{featured_product.camera}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-
-        <div class="flex items-center gap-8 lg:justify-start justify-center">
-            <button id="slider-button-left"
-                class="swiper-button-prev group !p-2 flex justify-center items-center border border-solid border-indigo-600 !size-12 transition-all duration-500 rounded-full !top-2/4 !-translate-y-8 !left-5 hover:bg-indigo-600"
-                data-carousel-prev>
-                <svg class="size-6 text-indigo-600 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" width="16"
-                    height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M10.0002 11.9999L6 7.99971L10.0025 3.99719" stroke="currentColor" stroke-width="1.6"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </button>
-
-            <button id="slider-button-right"
-                class="swiper-button-next group !p-2 flex justify-center items-center border border-solid border-indigo-600 !size-12 transition-all duration-500 rounded-full !top-2/4 !-translate-y-8  !right-5 hover:bg-indigo-600"
-                data-carousel-next>
-                <svg class="size-6 text-indigo-600 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" width="16"
-                    height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M5.99984 4.00012L10 8.00029L5.99748 12.0028" stroke="currentColor" stroke-width="1.6"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </button>
-        </div>
-        <div class="swiper-pagination"></div>
     </div>
+
+    <div class="flex items-center gap-8 lg:justify-start justify-center">
+        <button id="slider-button-left"
+            class="swiper-button-prev group !p-2 flex justify-center items-center border border-solid border-emerald-600 !size-12 transition-all duration-500 rounded-full !top-2/4 !-translate-y-8 !left-5 hover:bg-emerald-600"
+            data-carousel-prev>
+            <svg class="size-6 text-emerald-600 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" width="16"
+                height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M10.0002 11.9999L6 7.99971L10.0025 3.99719" stroke="currentColor" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+
+        <button id="slider-button-right"
+            class="swiper-button-next group !p-2 flex justify-center items-center border border-solid border-emerald-600 !size-12 transition-all duration-500 rounded-full !top-2/4 !-translate-y-8  !right-5 hover:bg-emerald-600"
+            data-carousel-next>
+            <svg class="size-6 text-emerald-600 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" width="16"
+                height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M5.99984 4.00012L10 8.00029L5.99748 12.0028" stroke="currentColor" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+    </div>
+
+    <div class="swiper-pagination"></div>
 </section>
 
 <section class="mt-10">
