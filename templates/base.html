@@ -56,10 +56,11 @@
                     <p class="text-gray-900 font-semibold">{{user.first_name}} {{user.last_name}}</p>
 
                     {% if user.profile_picture %}
-                    <div class="size-10 rounded-lg overflow-hidden">
+                    <a href="{% url 'dashboard' %}"
+                        class="size-10 rounded-lg overflow-hidden hover:opacity-70 duration-300">
                         <img src="{{user.profile_picture.url}}" class="w-full h-full object-cover"
                             alt="Avatar of {{user.first_name}} {{user.last_name}}" />
-                    </div>
+                    </a>
                     {% else %}
                     <a href="{% url 'dashboard' %}"
                         class="flex items-center justify-center bg-gray-300 size-10 rounded-md hover:opacity-70 duration-300">
