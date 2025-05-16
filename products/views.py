@@ -14,4 +14,6 @@ def home(request):
 # Product details view
 def product_details(request, product_id):
     product = Product.objects.get(pk=product_id)
-    return render(request, 'product_details.html', {'product': product})
+    reviews = product.reviews.all()
+
+    return render(request, 'product_details.html', {'product': product, 'reviews': reviews})
