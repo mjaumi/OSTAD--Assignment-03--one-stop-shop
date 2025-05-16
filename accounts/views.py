@@ -68,10 +68,10 @@ def user_login(request):
 @login_required
 def user_dashboard(request):
     user = request.user
-
     user_orders = Order.objects.filter(user=user).order_by('-created_at')
+    user_reviews = user.reviews.all()
 
-    return render(request, 'dashboard.html', {'user': user, 'orders': user_orders})
+    return render(request, 'dashboard.html', {'user': user, 'orders': user_orders, 'reviews': user_reviews})
 
 # update user dashboard view
 @login_required

@@ -84,7 +84,7 @@ Dashboard
 
     {% if orders|length > 0 %}
     <div class="flex flex-col gap-2">
-        <h2 class="text-3xl font-semibold text-gray-900">Purchase History</h2>
+        <h2 class="px-2 text-3xl font-semibold text-gray-900">Purchase History</h2>
         <div class=" overflow-x-auto">
             <div class="min-w-full inline-block align-middle">
                 <div class="overflow-hidden border-2 rounded-lg">
@@ -112,18 +112,63 @@ Dashboard
                         <tbody>
                             {% for order in orders %}
                             <tr class="odd:bg-white even:bg-gray-50">
-                                <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">
+                                <td class="px-5 py-2 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">
                                     {{order.order_number}}
                                 </td>
-                                <td class="p-5 whitespace-nowrap text-sm leading-6 font-bold text-gray-900">
+                                <td class="px-5 py-2 whitespace-nowrap text-sm leading-6 font-bold text-gray-900">
                                     ${{order.order_total}}
                                 </td>
-                                <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
+                                <td class="px-5 py-2 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
                                     {{order.created_at|date:'D, d M Y @H:i A'}}
                                 </td>
                                 <td
-                                    class="p-5 whitespace-nowrap text-sm leading-6 font-bold {% if order.status == 'Cancelled' %}text-red-500{% elif order.status == 'Completed' %}text-emerald-500{% else %}text-amber-500{% endif %}">
+                                    class="px-5 py-2 whitespace-nowrap text-sm leading-6 font-bold {% if order.status == 'Cancelled' %}text-red-500{% elif order.status == 'Completed' %}text-emerald-500{% else %}text-amber-500{% endif %}">
                                     {{order.status}}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if reviews|length > 0 %}
+    <div class="flex flex-col gap-2">
+        <h2 class="px-2 text-3xl font-semibold text-gray-900">Product Reviews</h2>
+        <div class=" overflow-x-auto">
+            <div class="min-w-full inline-block align-middle">
+                <div class="overflow-hidden border-2 rounded-lg">
+                    <table class=" min-w-full rounded-xl">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th scope="col"
+                                    class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">
+                                    Product Name
+                                </th>
+                                <th scope="col"
+                                    class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">
+                                    Review Date
+                                </th>
+                                <th scope="col"
+                                    class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">
+                                    Review
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for review in reviews %}
+                            <tr class="odd:bg-white even:bg-gray-50">
+                                <td class="px-5 py-2 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">
+                                    {{review.product.name}}
+                                </td>
+                                <td class="px-5 py-2 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
+                                    {{review.created_at|date:'D, d M Y @H:i A'}}
+                                </td>
+                                <td class="px-5 py-2 whitespace-nowrap text-sm leading-6 font-bold text-gray-900">
+                                    {{review.review_text}}
                                 </td>
                             </tr>
                             {% endfor %}

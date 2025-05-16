@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import CustomUser
 
 # Abstract base class for models that need timestamps
 class TimeStampedModel(models.Model):
@@ -15,7 +16,6 @@ class Product(TimeStampedModel):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     discount_percentage = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
     stock = models.PositiveIntegerField()
-    rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.00, null=True, blank=True)
     is_featured = models.BooleanField(default=False)
     is_new = models.BooleanField(default=False)
 
@@ -35,3 +35,12 @@ class Product(TimeStampedModel):
 
     class Meta:
         ordering = ("created_at",)
+
+# Review model
+class Review(TimeStampedModel):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='reviews')
+    review_text = models.TextField()
+
+    def __str__(self):
+        return f'{self.user.username} - {self.product.name}'
