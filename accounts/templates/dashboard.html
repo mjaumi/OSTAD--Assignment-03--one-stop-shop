@@ -156,6 +156,10 @@ Dashboard
                                     class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">
                                     Review
                                 </th>
+                                <th scope="col"
+                                    class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">
+                                    Action
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -169,6 +173,11 @@ Dashboard
                                 </td>
                                 <td class="px-5 py-2 whitespace-nowrap text-sm leading-6 font-bold text-gray-900">
                                     {{review.review_text}}
+                                </td>
+                                <td class="px-5 py-2 whitespace-nowrap text-sm leading-6 font-bold text-rose-600">
+                                    <a href="{% url 'remove_review' review.id %}" class="hover:opacity-70 duration-300">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                             {% endfor %}

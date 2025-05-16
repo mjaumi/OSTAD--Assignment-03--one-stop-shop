@@ -20,7 +20,7 @@ def product_details(request, product_id):
 
     return render(request, 'product_details.html', {'product': product, 'reviews': reviews})
 
-# Create your views here.
+# Add review view
 @login_required
 def add_review(request, product_id):
     if request.method == 'POST':
@@ -38,3 +38,18 @@ def add_review(request, product_id):
     # Redirect back to the same page after adding a review
     url = request.META.get('HTTP_REFERER')
     return redirect(url)  
+
+# remove review view
+@login_required
+def remove_review(request, review_id):
+    review = Review.objects.get(pk=review_id)
+
+    if review.user == request.user:
+        review.delete()
+        messages.success(request, 'Review removed successfully!')
+    else:
+        messages.error(request, 'You cannot delete this review!')
+
+    url = request.META.get('HTTP_REFERER')
+
+    return redirect(url)
