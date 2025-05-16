@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('postal_code', models.CharField(max_length=50)),
                 ('city', models.CharField(max_length=50)),
                 ('order_total', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('status', models.CharField(choices=[('New', 'New'), ('Accepted', 'Accepted'), ('Completed', 'Completed'), ('Cancelled', 'Cancelled')], default='New', max_length=10)),
+                ('status', models.CharField(choices=[('Pending', 'Pending'), ('Accepted', 'Accepted'), ('Completed', 'Completed'), ('Cancelled', 'Cancelled')], default='Pending', max_length=10)),
                 ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
             ],
             options={

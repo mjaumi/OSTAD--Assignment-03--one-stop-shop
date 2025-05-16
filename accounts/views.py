@@ -8,6 +8,8 @@ from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.forms import PasswordChangeForm
 
+from orders.models import Order
+
 from .models import CustomUser
 
 # user registration view
@@ -66,7 +68,10 @@ def user_login(request):
 @login_required
 def user_dashboard(request):
     user = request.user
-    return render(request, 'dashboard.html', {'user': user})
+
+    user_orders = Order.objects.filter(user=user).order_by('-created_at')
+
+    return render(request, 'dashboard.html', {'user': user, 'orders': user_orders})
 
 # update user dashboard view
 @login_required

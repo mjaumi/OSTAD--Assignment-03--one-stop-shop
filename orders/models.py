@@ -11,7 +11,7 @@ class Payment(TimeStampedModel):
 
 # Order model to store order details
 class Order(TimeStampedModel):
-    STATUS = [('New', 'New'),
+    STATUS = [('Pending', 'Pending'),
               ('Accepted', 'Accepted'),
               ('Completed', 'Completed'),
               ('Cancelled', 'Cancelled')
@@ -27,7 +27,7 @@ class Order(TimeStampedModel):
     postal_code = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     order_total = models.DecimalField(max_digits=10, decimal_places=2)
-    status = models.CharField(max_length=10, choices=STATUS, default='New')
+    status = models.CharField(max_length=10, choices=STATUS, default='Pending')
 
 # OrderProduct model to store product details in an order
 class OrderProduct(TimeStampedModel):

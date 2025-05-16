@@ -106,7 +106,7 @@ def payment(request):
     )
 
     user = request.user
-    unpaid_order = Order.objects.filter(user=user, status='New').last()
+    unpaid_order = Order.objects.filter(user=user, status='Pending').last()
 
     order_payment.set_product_integration(
         total_amount=Decimal(unpaid_order.order_total),
@@ -173,7 +173,7 @@ def payment_status(request):
 
 def sslc_complete(request, tran_id, payment_method):
     try:
-        unpaid_order = Order.objects.filter(user=request.user, status='New').last()
+        unpaid_order = Order.objects.filter(user=request.user, status='Pending').last()
 
         payment = Payment.objects.create(
             user=request.user,
