@@ -165,10 +165,17 @@ Home
                             Add to Cart
                         </a>
 
-                        <button title="Add to wishlist"
+                        {% if product.id in wishlist_product_ids %}
+                        <a href="{% url 'remove_from_wishlist' product.id %}" title="Remove from wishlist"
+                            class="flex items-center justify-center bg-rose-600 !text-white p-2 size-10 border-2 !border-rose-600 hover:bg-transparent hover:!text-rose-600 duration-300 rounded-md">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                        {% else %}
+                        <a href="{% url 'add_to_wishlist' product.id %}" title="Add to wishlist"
                             class="flex items-center justify-center bg-transparent text-gray-900 p-2 size-10 border-2 !border-gray-900 hover:bg-gray-900 hover:text-white duration-300 rounded-md">
                             <i class="fa-solid fa-heart"></i>
-                        </button>
+                        </a>
+                        {% endif %}
                     </div>
                 </div>
             </figcaption>

@@ -37,10 +37,15 @@
                         <a href="{% url 'home' %}" class="font-medium hover:!text-blue-300 duration-300">Home</a>
                     </li>
 
-                    {% if user.is_authenticated %}
                     <li>
                         <a href="{% url 'cart_details' %}"
                             class="text-blue-400 font-medium hover:text-blue-300 duration-300">Cart</a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'get_wishlist' %}"
+                            class="text-blue-400 font-medium hover:text-blue-300 duration-300">Wishlist</a>
                     </li>
                     {% endif %}
 

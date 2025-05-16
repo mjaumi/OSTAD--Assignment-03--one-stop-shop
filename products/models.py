@@ -1,4 +1,5 @@
 from django.db import models
+
 from accounts.models import CustomUser
 
 # Abstract base class for models that need timestamps
@@ -41,6 +42,14 @@ class Review(TimeStampedModel):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='reviews')
     review_text = models.TextField()
+
+    def __str__(self):
+        return f'{self.user.username} - {self.product.name}'
+    
+# Wishlist model    
+class Wishlist(TimeStampedModel):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='wishlists')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, unique=True, related_name='wishlists')
 
     def __str__(self):
         return f'{self.user.username} - {self.product.name}'

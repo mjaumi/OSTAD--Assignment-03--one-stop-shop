@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Product, Review
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
+from .models import Product, Review, Wishlist
 
 # Home page view
 def home(request):
@@ -19,9 +20,14 @@ def home(request):
 
     products = Product.objects.all()
 
+    wishlist_product_ids = []
+    if request.user.is_authenticated:
+        wishlist_product_ids = request.user.wishlists.values_list('product_id', flat=True)
+
     return render(request, 'home.html', {
         'products': products,
-        'featured_products': featured_products
+        'featured_products': featured_products,
+        'wishlist_product_ids': wishlist_product_ids
     })
 
 # Product details view
@@ -62,5 +68,34 @@ def remove_review(request, review_id):
         messages.error(request, 'You cannot delete this review!')
 
     url = request.META.get('HTTP_REFERER')
+    return redirect(url)
 
+# Get to wishlist view
+@login_required
+def get_wishlist(request):
+    wishlist_items = request.user.wishlists.all()
+
+    return render(request, 'wishlist.html', {
+        'wishlist_items': wishlist_items
+    })
+
+@login_required
+def add_to_wishlist(request, product_id):
+    product = Product.objects.get(pk=product_id)
+    user = request.user
+
+    Wishlist.objects.create(user=user, product=product)
+    messages.success(request, 'Product added to wishlist!')
+
+    url = request.META.get('HTTP_REFERER')
+    return redirect(url)
+
+@login_required
+def remove_from_wishlist(request, product_id):
+    wishlist_item = Wishlist.objects.get(product_id=product_id)
+
+    wishlist_item.delete()
+
+    messages.success(request, 'Product removed from wishlist!')
+    url = request.META.get('HTTP_REFERER')  
     return redirect(url)
