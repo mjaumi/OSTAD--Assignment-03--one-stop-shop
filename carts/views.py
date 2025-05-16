@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+
+from .utils import get_session_key
+
 from .models import Cart, CartItem
 from products.models import Product
-from django.contrib import messages
 
 # Add to cart view
 def add_to_cart(request, product_id):
@@ -55,9 +58,10 @@ def remove_from_cart(request, product_id):
 # Cart details view
 def cart_details(request):
     if request.user.is_authenticated:
-        cart = get_object_or_404(Cart, user=request.user)
+        cart, created = Cart.objects.get_or_create(user=request.user)
     else:
-        cart = get_object_or_404(Cart, session_key=request.session.session_key)
+        session_key = get_session_key(request)
+        cart, created = Cart.objects.get_or_create(session_key=session_key)
 
     cart_items = CartItem.objects.filter(cart=cart).select_related('product')
 
