@@ -15,7 +15,7 @@ Home
 
 {% block content %}
 <!-- featured product carousel -->
-<section class="w-full relative pt-8">
+<section class="relative pt-8">
     <div class="swiper feature-product-carousel swiper-container">
         <div class="swiper-wrapper">
             {% for featured_product in featured_products %}
@@ -102,8 +102,23 @@ Home
 </section>
 
 <section class="mt-10">
-    <h2 class="text-4xl font-bold text-gray-900">All Products ({{products|length}})</h2>
+    <div class="flex items-center justify-between">
+        <h2 class="text-4xl font-bold text-gray-900">All Products ({{products|length}})</h2>
 
+        <form method="POST" action="{% url 'home' %}" class="w-2/5 flex items-center justify-between gap-3">
+            {% csrf_token %}
+            <input type="text" name="search_query" id="search" placeholder="Search products..."
+                class="flex-1 border border-gray-300 rounded-md p-2" value="{{ search_query|default_if_none:'' }}">
+
+            <button type="submit"
+                class="w-fit bg-gray-900 text-white px-6 py-2 rounded-md hover:opacity-70 duration-300">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search
+            </button>
+        </form>
+    </div>
+
+    {% if products|length > 0 %}
     <div class="grid grid-cols-4 gap-5 mt-6">
         <!-- product card -->
         {% for product in products %}
@@ -167,6 +182,9 @@ Home
         </div>
         {% endfor %}
     </div>
+    {% else %}
+    <p class="text-center font-semibold text-rose-600 text-xl mt-10">No such products exist!</p>
+    {% endif %}
 </section>
 {% endblock %}
 

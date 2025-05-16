@@ -5,8 +5,19 @@ from django.contrib import messages
 
 # Home page view
 def home(request):
-    products = Product.objects.all()
     featured_products = Product.objects.filter(is_featured=True)
+
+    if request.method == 'POST':
+        search_query = request.POST.get('search_query').strip()
+        products = Product.objects.filter(name__icontains=search_query)
+
+        return render(request, 'home.html', {
+            'products': products,
+            'featured_products': featured_products,
+            'search_query': search_query
+        })
+
+    products = Product.objects.all()
 
     return render(request, 'home.html', {
         'products': products,
