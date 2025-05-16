@@ -11,7 +11,6 @@ Cart Details
     <div class="mt-10">
         {% if cart_items %}
         <div>
-
             <div class="flex items-center justify-between border-b border-gray-300 py-3 px-5">
                 <h3 class="text-gray-900 font-semibold text-xl">Product</h3>
 
@@ -21,6 +20,7 @@ Cart Details
                     <h3 class="text-gray-900 font-semibold text-xl">Price</h3>
                 </div>
             </div>
+
             {% for cart_item in cart_items %}
             <div class="flex items-center justify-between border-b border-gray-300 py-3 px-5">
                 <div class="flex items-center gap-4">
@@ -72,7 +72,7 @@ Cart Details
             </div>
 
             <div class="flex items-center justify-center">
-                <a href=""
+                <a href="{% url 'place_order' %}"
                     class="inline-block w-2/5 mt-4 bg-gray-900 text-white text-center text-lg py-3 px-8 rounded-md hover:opacity-70 duration-300">
                     Place Order
                 </a>

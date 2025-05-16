@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Checkout
+{% endblock %}
+
+{% block content %}
+<section class="pt-8">
+    <h2 class="text-center font-bold text-gray-900 text-3xl">Confirm Orders</h2>
+
+    <form method="POST" action="{% url 'place_order' %}" class="mt-10">
+        {% csrf_token %}
+        {% if cart_items %}
+        {% for cart_item in cart_items %}
+        <div class="flex items-center justify-between border-b border-gray-300 py-3 px-5">
+            <div class="flex items-center gap-4">
+                <div>
+                    <img src="{{cart_item.product.image.url}}" alt="{{cart_item.product.name}}" class="h-40 w-auto">
+                </div>
+
+                <div>
+                    <h3 class="text-gray-900 font-semibold text-xl">{{cart_item.product.name}}</h3>
+                    <p class="text-gray-400 mt-1">{{cart_item.product.description}}</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-2 text-gray-900">
+                    <h3 class="font-bold text-2xl">${{cart_item.product.discount_price|floatformat:2}}
+                    </h3>
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                    <p class="flex items-center justify-center font-bold text-2xl">
+                        {{cart_item.quantity}}
+                    </p>
+
+                    <i class="fa-solid fa-equals"></i>
+
+                    <h3 class="text-gray-900 font-bold text-2xl">${{cart_item.sub_total|floatformat:2}}</h3>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="flex items-center justify-end gap-4 border-b border-gray-300 py-3 px-5">
+            <h3 class="text-gray-900 font-semibold text-2xl">Total</h3>
+            <h3 class="text-emerald-500 font-bold text-2xl">${{total|floatformat:2}}</h3>
+        </div>
+
+        <div class="flex items-center justify-center">
+            <button type="submit"
+                class="w-2/5 mt-4 bg-gray-900 text-white text-center text-lg py-3 px-8 rounded-md hover:opacity-70 duration-300">
+                Checkout
+            </button>
+        </div>
+        {% else %}
+        <p class="text-lg font-medium text-center text-red-500">No items in your cart!</p>
+        {% endif %}
+    </form>
+</section>
+{% endblock %}
